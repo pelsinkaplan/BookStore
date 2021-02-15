@@ -1,0 +1,41 @@
+﻿@model BookStore.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    <img src="@Model.Image" alt="Kitap" width="200" height="250">
+    <div>
+        <h5 class="@Model.Name"></h5>
+        <p><img src="https://aux2.iconspalace.com/uploads/outline-star-icon-64.png" width="15" height="15" /> @Model.Rating </p>
+        @{
+            if (Model.DiscountRate == 0)
+            {
+                <p>@Model.Price TL</p>
+            }
+            else
+            {
+                <p><del>@Model.Price</del>  @(Model.Price - Model.Price * Model.DiscountRate / 100) TL</p>
+            }
+        }
+        <p>Yazar : @Model.Author.Name</p>
+        <p>Yayınevi : @Model.Publisher.Name</p>
+        <p>Kategori : @Model.Category.Name</p>
+        <div class="row">
+            <div class="col-3"><p>Kazandırıdığı Puan : @Model.Point</p></div>
+            <div class="col-3"><p>Sayfa Sayısı : @Model.PageNumber</p></div>
+            <div class="col-3"><p>Yayınlanma Tarihi : @Model.ReleaseDate</p></div>
+            <div class="col-3"><p>Satılma Sayısı : @Model.SoldNumber</p></div>
+        </div>
+        <h1>İçerik</h1>
+        <p>@Model.Content</p>
+
+
+    </div>
+</div>
+
+<a href="/">Ana Sayfaya Dön</a>
+</div>

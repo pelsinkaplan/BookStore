@@ -1,0 +1,32 @@
+﻿@model Book
+@{
+    var request = ViewContext.HttpContext.Request;
+    string returnUrlVal = request.QueryString.HasValue ? $"{request.Path}{request.QueryString}" : request.Path.Value;
+}
+<div class="card">
+    <img src="@Model.Image" class="card-img-top" alt="Kitap">
+    <div class="card-body">
+        <h5 class="@Model.Name"></h5>
+        <p class="card-text"><img src="https://aux2.iconspalace.com/uploads/outline-star-icon-64.png" width="15" height="15" alt="istanbul manzara" /> @Model.Rating </p>
+        @{
+            if (Model.DiscountRate == 0)
+            {
+                <p>@Model.Price TL</p>
+            }
+            else
+            {
+                <p><del>@Model.Price</del>  @(Model.Price - Model.Price * Model.DiscountRate / 100) TL</p>
+            }
+        }
+        <form asp-action="AddToBasket" asp-controller="Basket" asp-route-id="@Model.Id" method="post">
+            <input type="hidden" name="returnUrl" value="@returnUrlVal" />
+            <center><button type="submit" class="btn btn-outline-dark">Sepete Ekle</button></center>
+        </form>
+        <p> </p>
+        <form asp-action="Details" asp-controller="BookPage" asp-route-id="@Model.Id" method="post">
+            <input type="hidden" name="returnUrl" value="@returnUrlVal" />
+            <center><button type="submit" class="btn btn-outline-danger">Gözat</button></center>
+        </form>
+
+    </div>
+</div>
