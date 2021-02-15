@@ -33,6 +33,18 @@
         <h1>İçerik</h1>
         <p>@Model.Content</p>
 
+        <h1>Yorumlar</h1>
+        @{if (Model.Comments != null)
+                foreach (var comment in Model.Comments)
+                {
+                    <p>comment</p>
+                }
+        }
+
+
+        <a href="/Comments/Create">Yorum Yazmak İçin Tıklayın</a>
+
+
 
     </div>
 </div>

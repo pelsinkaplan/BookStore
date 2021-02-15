@@ -23,6 +23,8 @@ namespace BookStore.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>()
@@ -50,5 +52,7 @@ namespace BookStore.Data
         }
 
         public DbSet<BookStore.Models.Order> Order { get; set; }
+
+        public DbSet<BookStore.Models.Comment> Comment { get; set; }
     }
 }

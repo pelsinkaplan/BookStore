@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookStore.Migrations
 {
-    public partial class initializeMigration : Migration
+    public partial class NewMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,6 +35,23 @@ namespace BookStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PayAmount = table.Column<double>(nullable: false),
+                    CardNum = table.Column<int>(nullable: false),
+                    DateMounth = table.Column<int>(nullable: false),
+                    DateYear = table.Column<int>(nullable: false),
+                    CVC = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Publisher",
                 columns: table => new
                 {
@@ -49,15 +66,31 @@ namespace BookStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Books",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Image = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Books",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: false),
+                    Image = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    Content = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: false),
                     PageNumber = table.Column<int>(nullable: false),
                     Point = table.Column<int>(nullable: false),
                     Rating = table.Column<double>(nullable: false),
@@ -136,6 +169,12 @@ namespace BookStore.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Comment");
+
+            migrationBuilder.DropTable(
+                name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Books");
