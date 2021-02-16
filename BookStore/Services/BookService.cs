@@ -36,7 +36,8 @@ namespace BookStore.Services
 
         public Book GetBooksById(int id)
         {
-            return dbContext.Books.Find(id);
+
+            return dbContext.Books.FirstOrDefault(x => x.Id == id);
         }
     }
 }

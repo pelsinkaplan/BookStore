@@ -42,14 +42,18 @@ namespace BookStore.Models
 
         [Display(Name = "Kategori")]
         public int CategoryId { get; set; }
+        [Display(Name = "Kategori")]
         public Category Category { get; set; }
         [Display(Name = "Yayınevi")]
         public int PublisherId { get; set; }
+        [Display(Name = "Yayınevi")]
         public Publisher Publisher { get; set; }
         [Display(Name = "Yazar")]
         public int AuthorId { get; set; }
+        [Display(Name = "Yazar")]
         public Author Author { get; set; }
         [Display(Name = "Yorumlar")]
+
         public IList<Comment> Comments { get; set; }
     }
 }

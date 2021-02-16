@@ -3,6 +3,10 @@
     ViewData["Title"] = "Ana Sayfa";
     var counter = 0;
 }
+@{
+    ViewBag.PublisherList = ViewBag.PublishersList;
+    ViewBag.AuthorList = ViewBag.AuthorsList;
+}
 
 <div class="row">
     @foreach (var book in Model)

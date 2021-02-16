@@ -24,7 +24,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a>@await Component.InvokeAsync("Menu")</a></li>
+                                <li><a>@await Component.InvokeAsync("Menu") </a></li>
                             </ul>
                         </div>
 
@@ -33,8 +33,15 @@
                                 Yayınevi
                                 <span class="caret"></span>
                             </button>
+
                             <ul class="dropdown-menu">
-                                <li><a> @await Component.InvokeAsync("Menu")</a></li>
+                                @{
+                                    if (ViewBag.PublisherList != null)
+                                        foreach (var publisher in @ViewBag.PublisherList)
+                                        {
+                                            <li><a href="/" dropdown-item">@publisher.Name</a></li>
+                                        }
+                                }
                             </ul>
                         </div>
                         <div class="dropdown">
@@ -42,10 +49,15 @@
                                 Yazar
                                 <span class="caret"></span>
                             </button>
+
                             <ul class="dropdown-menu">
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
+                                @{
+                                    if (ViewBag.PublisherList != null)
+                                        foreach (var author in @ViewBag.AuthorList)
+                                        {
+                                            <li><a href="/" class="dropdown-item">@author.Name</a></li>
+                                        }
+                                }
                             </ul>
                         </div>
                         <div class="dropdown">
@@ -54,9 +66,10 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/Authors">Yazarlar</a></li>
-                                <li><a href="/Publishers">Yayınevleri</a></li>
-                                <li><a href="/Books">Kitaplar</a></li>
+                                <li><a href="/Categories" class="dropdown-item">Kategoriler</a></li>
+                                <li><a href="/Authors" class="dropdown-item">Yazarlar</a></li>
+                                <li><a href="/Publishers" class="dropdown-item">Yayınevleri</a></li>
+                                <li><a href="/Books1" class="dropdown-item">Kitaplar</a></li>
                             </ul>
                         </div>
                     </ul>
@@ -67,9 +80,7 @@
 
     <div class="container">
         <main role="main" class="pb-3">
-            <div class="row">
-                <div>@RenderBody()</div>
-            </div>
+            <div>@RenderBody()</div>
         </main>
     </div>
 

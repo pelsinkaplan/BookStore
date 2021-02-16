@@ -21,5 +21,16 @@ namespace BookStore.Services
         {
             return dbContext.Author.AsNoTracking().ToList();
         }
+
+        IList<Book> IAuthorService.GetBooks(int id)
+        {
+            List<Book> books = new List<Book>();
+            foreach (var book in dbContext.Books)
+            {
+                if (book.AuthorId == id)
+                    books.Add(book);
+            }
+            return books;
+        }
     }
 }

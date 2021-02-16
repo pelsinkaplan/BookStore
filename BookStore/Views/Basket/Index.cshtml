@@ -59,9 +59,9 @@
 
 <!-- Button trigger modal -->
 
-    <button type="button" class="btn btn-lg btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
-        Alışverişi Tamamla
-    </button>
+<button type="button" class="btn btn-lg btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
+    Alışverişi Tamamla
+</button>
 
 
 
@@ -79,7 +79,9 @@
                 Kitap Mağazasını Tercih Ettiğiniz İçin Teşekkürler!
             </div>
             <div class="modal-footer">
-                    <a class="btn btn-dark" href="@ViewBag.ReturnUrl">Ana Sayfaya Dön</a>
+                <form asp-action="RemoveAllItemsInBasket" asp-controller="Basket" method="post">
+                    <button class="btn btn-dark" href="/">Ana Sayfaya Dön</button>
+                </form>
             </div>
         </div>
     </div>

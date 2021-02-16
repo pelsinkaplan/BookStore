@@ -9,5 +9,6 @@ namespace BookStore.Services
     public interface IAuthorService
     {
         IList<Author> GetAuthors();
+        IList<Book> GetBooks(int id);
     }
 }

@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using BookStore.Data;
 using BookStore.Models;
 using Microsoft.AspNetCore.Authorization;
+using BookStore.Services;
 
 namespace BookStore.Controllers
 {
     [Authorize]
     public class AuthorsController : Controller
     {
+        private IAuthorService authorService;
         private readonly BookStoreDbContext _context;
 
-        public AuthorsController(BookStoreDbContext context)
+        public AuthorsController(BookStoreDbContext context, IAuthorService authorService)
         {
+            this.authorService = authorService;
             _context = context;
         }
 
@@ -41,6 +44,8 @@ namespace BookStore.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.AuthorsBooks = GetAuthorsBooks(author.Id);
 
             return View(author);
         }
@@ -150,6 +155,11 @@ namespace BookStore.Controllers
         private bool AuthorExists(int id)
         {
             return _context.Author.Any(e => e.Id == id);
+        }
+
+        private IList<Book> GetAuthorsBooks(int id)
+        {
+            return authorService.GetBooks(id);
         }
     }
 }

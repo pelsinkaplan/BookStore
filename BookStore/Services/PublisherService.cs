@@ -17,9 +17,22 @@ namespace BookStore.Services
             this.dbContext = dbContext;
         }
 
+        public IList<Book> GetBooks(int id)
+        {
+            List<Book> books = new List<Book>();
+            foreach (var book in dbContext.Books)
+            {
+                if (book.PublisherId == id)
+                    books.Add(book);
+            }
+            return books;
+        }
+
         public IList<Publisher> GetPublishers()
         {
             return dbContext.Publisher.AsNoTracking().ToList();
         }
+
+
     }
 }

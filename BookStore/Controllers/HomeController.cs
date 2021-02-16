@@ -15,10 +15,14 @@ namespace BookStore.Controllers
         private readonly ILogger<HomeController> _logger;
 
         private IBookService bookService;
-        public HomeController(ILogger<HomeController> logger, IBookService bookService)
+        private IPublisherService publisherService;
+        private IAuthorService authorService;
+        public HomeController(ILogger<HomeController> logger, IBookService bookService, IPublisherService publisherService, IAuthorService authorService)
         {
             _logger = logger;
+            this.publisherService = publisherService;
             this.bookService = bookService;
+            this.authorService = authorService;
         }
 
         public IActionResult Index(int page = 1, int catid = 0)
@@ -35,6 +39,8 @@ namespace BookStore.Controllers
             var totalBook = books.Count;
             var totalPages = Math.Ceiling((decimal)totalBook / pageSize);
             ViewBag.TotalPages = totalPages;
+            ViewBag.PublishersList = publisherService.GetPublishers();
+            ViewBag.AuthorsList = authorService.GetAuthors();
             return View(pagingBooks);
         }
 

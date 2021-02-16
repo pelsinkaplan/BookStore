@@ -13,7 +13,7 @@ namespace BookStore.ViewComponents
         private IPublisherService publisherService;
         private IAuthorService authorService;
 
-        public MenuViewComponent(ICategoryService categoryService,IPublisherService publisherService,IAuthorService authorService)
+        public MenuViewComponent(ICategoryService categoryService, IPublisherService publisherService, IAuthorService authorService)
         {
             this.categoryService = categoryService;
             this.publisherService = publisherService;

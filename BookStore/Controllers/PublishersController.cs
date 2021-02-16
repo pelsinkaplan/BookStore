@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using BookStore.Data;
 using BookStore.Models;
 using Microsoft.AspNetCore.Authorization;
+using BookStore.Services;
 
 namespace BookStore.Controllers
 {
     [Authorize]
     public class PublishersController : Controller
     {
+        private IPublisherService publisherService;
         private readonly BookStoreDbContext _context;
 
-        public PublishersController(BookStoreDbContext context)
+        public PublishersController(BookStoreDbContext context, IPublisherService publisherService)
         {
+            this.publisherService = publisherService;
             _context = context;
         }
 
@@ -41,7 +44,7 @@ namespace BookStore.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.PublishersBooks = GetPublishersBooks(publisher.Id);
             return View(publisher);
         }
 
@@ -151,5 +154,11 @@ namespace BookStore.Controllers
         {
             return _context.Publisher.Any(e => e.Id == id);
         }
+
+        private IList<Book> GetPublishersBooks(int id)
+        {
+            return publisherService.GetBooks(id);
+        }
+
     }
 }

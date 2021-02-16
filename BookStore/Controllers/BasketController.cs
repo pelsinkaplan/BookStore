@@ -54,9 +54,9 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult RemoveAllItemsInBasket(List<Book> books)
+        public IActionResult RemoveAllItemsInBasket()
         {
-            books.Clear();
+            bookService.GetBooks().Clear();
             return RedirectToAction(nameof(Index), nameof(Basket));
         }
 

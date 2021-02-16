@@ -33,18 +33,27 @@
         <h1>İçerik</h1>
         <p>@Model.Content</p>
 
+        <div class="dropdown">
+            <button class="btn btn-outline-dark dropdown-toggle mr-2" type="button" data-toggle="dropdown">
+                Oy Ver
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/BookPage/Details/@Model.Id" class="btn">1</a></li>
+                <li><a href="/BookPage/Details/@Model.Id" class="btn">2</a></li>
+                <li><a href="/BookPage/Details/@Model.Id" class="btn">3</a></li>
+                <li><a href="/BookPage/Details/@Model.Id" class="btn">4</a></li>
+                <li><a href="/BookPage/Details/@Model.Id" class="btn">5</a></li>
+            </ul>
+        </div>
+
         <h1>Yorumlar</h1>
-        @{if (Model.Comments != null)
-                foreach (var comment in Model.Comments)
-                {
-                    <p>comment</p>
-                }
-        }
-
-
+        @if (Model.Comments != null)
+            @foreach (var comment in Model.Comments)
+            {
+                <li>@comment.CommentString</li>
+            }
         <a href="/Comments/Create">Yorum Yazmak İçin Tıklayın</a>
-
-
 
     </div>
 </div>
