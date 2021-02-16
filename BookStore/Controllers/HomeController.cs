@@ -27,7 +27,7 @@ namespace BookStore.Controllers
 
         public IActionResult Index(int page = 1, int catid = 0)
         {
-            var pageSize = 4;
+            var pageSize = 8;
             var books = catid == 0 ? bookService.GetBooks() : bookService.GetBooksByCategoryId(catid);
 
             var pagingBooks = books.OrderBy(p => p.Id)
